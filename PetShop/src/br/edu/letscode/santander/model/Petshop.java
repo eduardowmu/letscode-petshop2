@@ -89,7 +89,10 @@ public class Petshop {
 			System.out.println("Codigo do serviço: " + response.getId());
 		}
 		
-		BigDecimal total = getValorProdutos(valorServicos);
+		/*A quantidade de cada tipo de produto comprado será o mesmo que a 
+		 *quantidade de animais*/
+		int quantidade = responses.get(0).getCliente().getAnimais().size();
+		BigDecimal total = getValorProdutos(valorServicos, quantidade);
 		
 		System.out.println("Total: " + total);
 	}
@@ -144,7 +147,7 @@ public class Petshop {
 		return vacina;
 	}
 	
-	private BigDecimal getValorProdutos(double total) {
+	private BigDecimal getValorProdutos(double total, int quantidade) {
 		Scanner entrada = new Scanner(System.in);
 		List<Produto> produtos = new ArrayList<>();
 		//criando a lista de alimentos e remedios a serem comprados
@@ -158,7 +161,7 @@ public class Petshop {
 		produtos.add(remedio);
 		
 		for(Produto produto : produtos) {
-			total += produto.getPreco().doubleValue();
+			total += produto.getPreco().doubleValue() * quantidade;
 		}
 		return new BigDecimal(total);
 	}

@@ -4,10 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-
-import com.sun.tools.javac.code.Attribute.Array;
-
 import br.edu.letscode.santander.enumeration.EstadoAnimal;
 import br.edu.letscode.santander.enumeration.Higiene;
 import br.edu.letscode.santander.enumeration.Porte;
@@ -18,7 +14,6 @@ import br.edu.letscode.santander.model.Cliente;
 import br.edu.letscode.santander.model.Endereco;
 import br.edu.letscode.santander.model.EsquemaVacinal;
 import br.edu.letscode.santander.model.Gato;
-import br.edu.letscode.santander.model.Pessoa;
 import br.edu.letscode.santander.model.Petshop;
 import br.edu.letscode.santander.vo.ResponseVO;
 
