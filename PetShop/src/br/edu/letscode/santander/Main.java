@@ -27,12 +27,10 @@ public class Main {
         Petshop petShop = new Petshop();
     	
     	List<EsquemaVacinal> esquemasVacinais = new ArrayList<>();
-        esquemasVacinais.add(new EsquemaVacinal(LocalDate.of(1999, 3, 20), Vacina.VACINA_1, "Sem reaÁ„o"));
-        esquemasVacinais.add(new EsquemaVacinal(LocalDate.of(1999, 3, 20), Vacina.VACINA_2, "Sem reaÁ„o"));
         
-    	Animal minski = new Cachorro("Minski", LocalDate.of(2000, 1, 20), "Pastor alem„o", Porte.MEDIO, 40.0, 
+    	Animal minski = new Cachorro("Minski", LocalDate.of(2000, 1, 20), "Pastor alem√£o", Porte.MEDIO, 40.0, 
     			EstadoAnimal.SUJO, esquemasVacinais);
-        Animal maia = new Cachorro("Maia", LocalDate.of(2002, 1, 20), "Pastor alem„o", Porte.MEDIO, 45.0, 
+        Animal maia = new Cachorro("Maia", LocalDate.of(2002, 1, 20), "Pastor alem√£o", Porte.MEDIO, 45.0, 
         		EstadoAnimal.SUJO, esquemasVacinais);
         
         List<Animal> cachorros = new ArrayList<>();
@@ -40,7 +38,7 @@ public class Main {
         cachorros.add(maia);
         
         Cliente eduardo = new Cliente(1, cachorros, "Eduardo", "12345678901", "eduwm@gmail.com", new Endereco("Alameda Santos", 
-        		"Centro", "Casa", 222, "0123456", "S„o Paulo", "SP", "PrÛximo a Avenida Paulista"), "11999999999");
+        		"Centro", "Casa", 222, "0123456", "S√£o Paulo", "SP", "Pr√≥ximo a Avenida Paulista"), "11999999999");
         
         List<EsquemaVacinal> esquemas = new ArrayList<>();
         
@@ -49,64 +47,100 @@ public class Main {
         List<Animal> gatos = new ArrayList<>();
         gatos.add(helloKit);
         
-        Cliente camila = new Cliente(2, gatos, "Camila", "23456789012", "camila@gmail.com", new Endereco("Rua Capit„o Cavalcanti", 
-        		"Vila Martiana", "apto 23", 541, "1234567", "S„o Paulo", "SP", "PrÛximo a estaÁ„o de metro Vila Mariana"), "11987456123");
+        Cliente camila = new Cliente(2, gatos, "Camila", "23456789012", "camila@gmail.com", new Endereco("Rua Capit√£o Cavalcanti", 
+        		"Vila Martiana", "apto 23", 541, "1234567", "S√£o Paulo", "SP", "Pr√≥ximo a esta√ß√£o de metro Vila Mariana"), "11987456123");
         
-        /*Chame o mÈtodo atendimentoClinico do petshop, e faÁa-o retornar no
-		campo observaÁıes o pedido do mÈdico para o pet tomar a vacina X*/
+        /*Chame o m√©todo atendimentoClinico do petshop, e fa√ßa-o retornar no
+		campo observa√ß√µes o pedido do m√©dico para o pet tomar a vacina X*/
         ResponseVO response_1 = petShop.atendimentoClinico(camila, gatos, String.valueOf(helloKit.getNome()).concat(" tomar "));
         System.out.println(response_1.getCliente().getAnimais().get(
         		camila.getAnimais().indexOf(helloKit)).getEsquemasVacinal().get(0).getObs());
         
-        /*Valide se o retorno do mÈtodo atendimentoClinico possui o id do
-		serviÁo, o serviÁo prestado, o valor e valide principalmente, se h· no
-		campo observaÁ„o do animal, o pedido do mÈdico para a vacina*/
+        /*Valide se o retorno do m√©todo atendimentoClinico possui o id do
+		servi√ßo, o servi√ßo prestado, o valor e valide principalmente, se h√° no
+		campo observa√ß√£o do animal, o pedido do m√©dico para a vacina*/
         System.out.println(response_1.toString());
         
         /*
-         * Chame o mÈtodo vacinaÁ„o do pet shop, e faÁa o pet tomar a vacina
+         * Chame o m√©todo vacina√ß√£o do pet shop, e fa√ßa o pet tomar a vacina
 		 * pedido no retorno do atendimentoClinico
          */
         List<Vacina> vacinas = new ArrayList<>();
         Vacina vacina = helloKit.getEsquemasVacinal().get(0).getVacina();
         vacinas.add(vacina);
-        ResponseVO response_2 = petShop.vacinacao(camila, gatos, vacinas, helloKit.getNome().concat(" vacinado com " + vacina));
+        ResponseVO response_2 = petShop.vacinacao(camila, gatos, vacinas, helloKit.getNome().concat(" vacinado com "));
         System.out.println(response_2.getCliente().getAnimais().get(camila.getAnimais().indexOf(helloKit)).getEsquemasVacinal().get(0).getObs());
         
         /*
-         * Valide se o retorno do mÈtodo vacinaÁ„o possui o esquemaVacinal do
-		 * pet preenchido com o vacina que foi pedida, o id, o serviÁo prestado e
+         * Valide se o retorno do m√©todo vacina√ß√£o possui o esquemaVacinal do
+		 * pet preenchido com o vacina que foi pedida, o id, o servi√ßo prestado e
 		 *  o valor
          */
         System.out.println(response_2.toString());
         
         /*
-         *Chame o mÈtodo higienizar do petshop, e faÁa-o retornar no campo
-		 *estado do animal, um valor referente ao serviÁo prestado ex: se
-		 *chamou o mÈtodo apenas pedindo para dar banho, o animal dever·
-		 *estar limpo no retorno do mÈtodo 
+         *Chame o m√©todo higienizar do petshop, e fa√ßa-o retornar no campo
+		 *estado do animal, um valor referente ao servi√ßo prestado ex: se
+		 *chamou o m√©todo apenas pedindo para dar banho, o animal dever√°
+		 *estar limpo no retorno do m√©todo 
          */
         ResponseVO response_3 = petShop.higienizar(camila, gatos, Higiene.BANHO, helloKit.getNome().concat(
-        		" receber· serviÁo de " + getServico(Higiene.BANHO)));
+        		" receber√° servi√ßo de " + getServico(Higiene.BANHO)));
         System.out.println(helloKit.getNome().concat(" " + helloKit.getEstadoAnimal().name().toLowerCase()));
         
         /*
-         * Valide se o retorno do mÈtodo higienizar possui id, serviÁo, preÁo e se
-		 * o estado do animal est· equivalente ao serviÁo pedido
+         * Valide se o retorno do m√©todo higienizar possui id, servi√ßo, pre√ßo e se
+		 * o estado do animal est√° equivalente ao servi√ßo pedido
          **/
         System.out.println(response_3.toString());
         
-        /*Chame os mÈtodos verRemedio e verAlimentos*/
+        /*Chame os m√©todos verRemedio e verAlimentos*/
         petShop.verAlimentos();
         petShop.verRemedios();
         
         /*
-         *Por ˙ltimo, passe para o mÈtodo pagamentos, a lista de todos os ids
-		 *do serviÁos utilizados mais pelo menos 1 remÈdio e 1 alimento e
-    	 *valide se a soma dos valores do pedido do cliente est· correta 
+         *Por √∫ltimo, passe para o m√©todo pagamentos, a lista de todos os ids
+		 *do servi√ßos utilizados mais pelo menos 1 rem√©dio e 1 alimento e
+    	 *valide se a soma dos valores do pedido do cliente est√° correta.
          */
         List<ResponseVO> responses = Arrays.asList(response_1, response_2, response_3);
         petShop.pagamento(responses);
+        
+        /*
+         * repita o todos os fluxos feitos para o cliente com apenas um pet para
+		 * o que tenha dois, fazendo a seguinte altera√ß√µes:
+		 * ‚óã no m√©todo atendimentoClinico coloque uma observa√ß√£o diferente
+		 * para cada animal do cliente (cada animal do cliente deve receber uma
+		 * vacina diferente para esse caso de testes)
+         */
+        ResponseVO response_4 = petShop.atendimentoClinico(eduardo, cachorros, " tomar ");
+        cachorros.forEach(c -> System.out.println(c.getNome() + " " + c.getEsquemasVacinal().get(0).getObs()));
+        
+        /*
+         * no m√©todo vacina√ß√£o, vc deve vacinar cada animal conforme pedido
+		 * no atendimentoClinico e deve checar no retorno o esquemaVacinal de
+		 * cada animal e constatar a vacina correta em cada um
+         */
+        List<Vacina> vacinas_2 = new ArrayList<>();
+        for(Animal cachorro : cachorros) {
+        	vacinas_2.add(cachorro.getEsquemasVacinal().get(0).getVacina());
+        }
+        ResponseVO response_5 = petShop.vacinacao(eduardo, cachorros, vacinas_2, " vacinado com ");
+        cachorros.forEach(c -> System.out.println(c.getNome() + " " + c.getEsquemasVacinal().get(0).getObs()));
+        
+        /*Chame os m√©todos verRemedio e verAlimentos*/
+        petShop.verAlimentos();
+        petShop.verRemedios();
+        
+        /*
+         *	Por √∫ltimo, fa√ßa a mesma valida√ß√£o para o m√©todo pagamentos ( a
+		 *  lista de todos os ids do servi√ßos utilizados mais pelo menos 2 rem√©dio
+		 *	e 2 alimento e valide se a soma dos valores do pedido do cliente est√°
+		 *	correta ) lembre se que se foi enviado dois animais para qualquer
+		 *	servi√ßo, o valor ser√° o dobro do servi√ßo feito apenas para um animal 
+         */
+        List<ResponseVO> responses_2 = Arrays.asList(response_4, response_5);
+        petShop.pagamento(responses_2);
    }
     
    private static String getServico(Higiene higiene) {

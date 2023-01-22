@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Petshop {
 	private String cnpj;
@@ -37,20 +38,22 @@ public class Petshop {
 	}
 
 	public ResponseVO higienizar(Cliente cliente, List<Animal> animais, Higiene higiene, String obs) {
-		for(Animal animal : animais) {
-			for(Animal a : cliente.getAnimais()) {
-				if(a.equals(animal)) {
-					a.setEstadoAnimal(getEstadoAnimal(higiene));
-				}
-			}
+		for(Animal a : animais) {
+			a.setEstadoAnimal(getEstadoAnimal(higiene));
 		}
 		return new ResponseVO(3, Servico.HIGIENIZAR, new BigDecimal(300).multiply(new BigDecimal(animais.size())), cliente);
 	}
 
 	public ResponseVO atendimentoClinico(Cliente cliente, List<Animal> animais, String obs) {
-		for(Animal a : cliente.getAnimais()) {
-			Vacina vacina = setVacinas().get(new Random().nextInt(5));
-			a.getEsquemasVacinal().add(new EsquemaVacinal(LocalDate.now(), vacina, obs.concat(vacina.name())));
+		//Criação de uma lista de vacinas para impedir a tomada de uma vacina já usada
+		List<String> vacinasUsadas = new ArrayList<>();
+		for(Animal animal : animais) {
+			List<EsquemaVacinal> esquemas = new ArrayList<>();
+			Vacina vacina = getVacina(vacinasUsadas);
+			//adiciona vacina na lista de vacinas usadas
+			vacinasUsadas.add(vacina.name());
+			esquemas.add(new EsquemaVacinal(LocalDate.now(), vacina, obs.concat(vacina.name())));
+			animal.setEsquemasVacinal(esquemas);
 		}
 		return new ResponseVO(1, Servico.ATENDIMENTO_CLINICO, new BigDecimal(100).multiply(new BigDecimal(animais.size())), cliente);
 	}
@@ -60,7 +63,7 @@ public class Petshop {
 			for(Vacina vacina : vacinas) {
 				for(EsquemaVacinal ev : a.getEsquemasVacinal()) {
 					if(ev.getVacina().equals(vacina)) {
-						ev.setObs(obs);
+						ev.setObs(obs.concat(vacina.name()));
 						ev.setData(LocalDate.now());
 					}
 				}
@@ -78,23 +81,17 @@ public class Petshop {
 	}
 	
 	public void pagamento(List<ResponseVO> responses) {
-		double total = 0.;
+		double valorServicos = 0.;
 		//pois existe apenas um cliente
 		Cliente cliente = responses.get(0).getCliente();
 		for(ResponseVO response : responses) {
-			total += response.getPreco().doubleValue();
+			valorServicos += response.getPreco().doubleValue();
 			System.out.println("Codigo do serviço: " + response.getId());
 		}
 		
-		//criando a lista de alimentos e remedios a serem comprados
-		List<Produto> produtos = Arrays.asList(this.alimentos.get(0), this.remedios.get(0));
+		BigDecimal total = getValorProdutos(valorServicos);
 		
-		for(Produto produto : produtos) {
-			total += produto.getPreco().doubleValue() * cliente.getAnimais().size();
-			System.out.println("Codigo do produto " + produto.getId() + " X" + cliente.getAnimais().size());
-		}
-		
-		System.out.println("Total: " + new BigDecimal(total));
+		System.out.println("Total: " + total);
 	}
 	
 	private static List<Alimento> viewAlimentos() {
@@ -135,5 +132,34 @@ public class Petshop {
 			default:
 				return EstadoAnimal.LIMPO_E_TOSADO;
 		}
+	}
+	
+	private Vacina getVacina(List<String> vacinasUsadas) {
+		Vacina vacina = setVacinas().get(new Random().nextInt(5));
+		for(String v : vacinasUsadas) {
+			if(v.equals(vacina.name())) {
+				return getVacina(vacinasUsadas);
+			}
+		}
+		return vacina;
+	}
+	
+	private BigDecimal getValorProdutos(double total) {
+		Scanner entrada = new Scanner(System.in);
+		List<Produto> produtos = new ArrayList<>();
+		//criando a lista de alimentos e remedios a serem comprados
+		System.out.print("Selecione um codigo de Alimento: ");
+		Alimento alimento = alimentos.get(entrada.nextInt() - 1);
+				
+		System.out.print("Selecione um codigo de Remedio: ");
+		Remedio remedio = remedios.get(entrada.nextInt() - 1);
+		
+		produtos.add(alimento);
+		produtos.add(remedio);
+		
+		for(Produto produto : produtos) {
+			total += produto.getPreco().doubleValue();
+		}
+		return new BigDecimal(total);
 	}
 }
