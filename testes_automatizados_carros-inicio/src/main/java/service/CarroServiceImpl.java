@@ -10,6 +10,7 @@ public class CarroServiceImpl implements CarroService {
 
     @Override
     public void frear(Carro carro, int velocidadeAMenos) {
+
         carro.setVelocidadeAtual(carro.getVelocidadeAtual() - velocidadeAMenos);
     }
 
