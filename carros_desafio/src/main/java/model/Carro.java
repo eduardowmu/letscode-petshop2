@@ -19,6 +19,12 @@ public class Carro {
         this.velocidadeMaxima = velocidadeMaxima;
     }
 
+    public Carro(int velocidadeAtual, boolean ligado, int velocidadeMaxima) {
+        this.velocidadeAtual = velocidadeAtual;
+        this.ligado = ligado;
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
+
     public String getCor() {
         return cor;
     }
