@@ -4,11 +4,13 @@ import model.Conta;
 
 public class ContaService {
 
-    private void depositar (Conta conta, Double valor) {
-        conta.setSaldo(conta.getSaldo() + valor);
+    public void depositar (Conta conta, Double valor) {
+        if(valor > 0) {
+            conta.setSaldo(conta.getSaldo() + valor);
+        }
     }
 
-    private void sacar (Conta conta, Double valor) {
+    public void sacar (Conta conta, Double valor) {
         if (conta.getSaldo() >= valor) {
             conta.setSaldo(conta.getSaldo() - valor);
         } else {
@@ -16,10 +18,17 @@ public class ContaService {
         }
     }
 
-    private void transferir (Conta contaTransferindo, Conta contaRecebendo, Double valor) {
+    public void transferir (Conta contaTransferindo, Conta contaRecebendo, Double valor) {
         if (contaTransferindo.getSaldo() >= valor) {
             contaTransferindo.setSaldo(contaTransferindo.getSaldo() - valor);
             contaRecebendo.setSaldo(contaRecebendo.getSaldo() + valor);
         }
+    }
+
+    public Conta criarConta(String agencia, String numero, String nome) {
+        if(agencia != null && numero != null && nome != null) {
+            return new Conta(agencia, numero, nome);
+        }
+        return null;
     }
 }
