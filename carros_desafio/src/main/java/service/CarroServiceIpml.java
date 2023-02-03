@@ -5,7 +5,9 @@ import model.Carro;
 public class CarroServiceIpml implements CarroService {
     @Override
     public void acelerar(Carro carro, int velocidadeAMais) {
-        carro.setVelocidadeAtual(carro.getVelocidadeAtual() + velocidadeAMais);
+        var velocidadeNova = carro.getVelocidadeAtual() + velocidadeAMais;
+        carro.setVelocidadeAtual(velocidadeNova <= carro.getVelocidadeMaxima() ?
+                velocidadeNova : carro.getVelocidadeMaxima());
     }
 
     @Override

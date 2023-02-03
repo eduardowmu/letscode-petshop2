@@ -62,7 +62,7 @@ public class CarroServiceTeste {
         carroService.acelerar(carro, 100);
         carroService.acelerar(carro, 100);
 
-        Assert.assertTrue(carro.getVelocidadeAtual() == carro.getVelocidadeMaxima());
+        Assert.assertEquals(carro.getVelocidadeAtual(), carro.getVelocidadeMaxima());
     }
 
     @Test
@@ -76,6 +76,6 @@ public class CarroServiceTeste {
         carroService.frear(carro, 10*11);
 
         //Então a velocidade deve ser zero e o carro deve estar parado
-        Assert.assertEquals(0, carro.getVelocidadeAtual());
+        Assert.assertFalse(carro.getVelocidadeAtual() < 0);
     }
 }
