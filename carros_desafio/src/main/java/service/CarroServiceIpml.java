@@ -3,6 +3,10 @@ package service;
 import model.Carro;
 
 public class CarroServiceIpml implements CarroService {
+
+    private static final String LIGADO = "LIGADO";
+    private static final String DESLIGADO = "DESLIGADO";
+
     @Override
     public void acelerar(Carro carro, int velocidadeAMais) {
         var velocidadeNova = carro.getVelocidadeAtual() + velocidadeAMais;
@@ -31,6 +35,6 @@ public class CarroServiceIpml implements CarroService {
 
     @Override
     public String estadoAtual(Carro carro) {
-        return carro.toString();
+        return carro.isLigado() ? LIGADO : DESLIGADO;
     }
 }

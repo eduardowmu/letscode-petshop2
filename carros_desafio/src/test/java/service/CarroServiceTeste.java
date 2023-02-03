@@ -5,18 +5,22 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CarroServiceTeste {
+    private static final String LIGADO = "LIGADO";
+    private static final String DESLIGADO = "DESLIGADO";
+
     @Test
     public void deveLigarCorretamente() {
         //Dado um carro desligado
         CarroService carroService = new CarroServiceIpml();
 
-        Carro carro = new Carro("azzul", "fiat", "uno", 2023, 100);
+        Carro carro = new Carro("azul", "fiat", "uno", 2023, 100);
 
         //Quando ligá-lo
         carroService.ligar(carro);
 
         //Então, deve mudar para estado ligado
-        Assert.assertTrue(carro.isLigado());
+        System.out.println("Carro ".concat(carroService.estadoAtual(carro).toLowerCase()));
+        Assert.assertTrue(LIGADO.equalsIgnoreCase(carroService.estadoAtual(carro)));
     }
 
     @Test
@@ -24,13 +28,15 @@ public class CarroServiceTeste {
         //Dado um carro ligado
         CarroService carroService = new CarroServiceIpml();
 
-        Carro carro = new Carro(0, true, 100);
+        Carro carro = new Carro(0, false, 100);
+
+        carroService.ligar(carro);
 
         //Quando desligá-lo
         carroService.desligar(carro);
 
         //Então deverá mudar para estado desligado
-        Assert.assertTrue(!carro.isLigado());
+        Assert.assertEquals(carroService.estadoAtual(carro), DESLIGADO);
     }
 
     @Test
