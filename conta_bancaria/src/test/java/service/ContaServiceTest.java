@@ -97,4 +97,30 @@ public class ContaServiceTest {
         //Então
         Assert.assertEquals(conta01, conta02);
     }
+    @Test
+    public void contasCopiadasDevemSerIguais() {
+        //Dado
+        String agencia2 = "1";
+        String numero2 = "1";
+        String nome2 = "Eduardo";
+
+        //Quando
+        Conta conta02 = this.contaService.criarConta(agencia2, numero2, nome2);
+        Conta conta03 = conta02;
+        //Então
+        Assert.assertSame(conta02, conta03);
+    }
+    @Test
+    public void contasDiferentesDevemSerDiferentes() {
+        //Dado
+        String agencia2 = "1";
+        String numero2 = "1";
+        String nome2 = "Eduardo";
+
+        //Quando
+        Conta conta02 = this.contaService.criarConta(agencia2, numero2, nome2);
+        Conta conta03 = this.contaService.criarConta(agencia2, numero2, nome2);
+        //Então
+        Assert.assertNotSame(conta02, conta03);
+    }
 }
