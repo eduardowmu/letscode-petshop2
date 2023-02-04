@@ -10,7 +10,11 @@ public class ContaService {
         }
     }
 
-    public void sacar (Conta conta, Double valor) {
+    public void sacar (Conta conta, Double valor) throws Exception {
+        if(valor <= 0) {
+            throw new Exception("Valor inválido");
+        }
+
         if (conta.getSaldo() >= valor) {
             conta.setSaldo(conta.getSaldo() - valor);
         } else {

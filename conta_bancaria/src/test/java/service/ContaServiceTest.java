@@ -56,7 +56,11 @@ public class ContaServiceTest {
         this.contaService.depositar(conta01, valorDepositar);
 
         //Quando
-        this.contaService.sacar(conta01, valorSacar);
+        try {
+            this.contaService.sacar(conta01, valorSacar);
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         //Então
         Assert.assertEquals("Saldo insuficiente", 50., conta01.getSaldo(), 0);
