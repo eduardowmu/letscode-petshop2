@@ -1,9 +1,13 @@
 package service;
 
 import model.Carro;
+import org.junit.jupiter.api.*;
+
+/*
 import org.junit.Assert;
 import org.junit.Test;
-
+*/
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CarroServiceTeste {
     private static final String LIGADO = "LIGADO";
     private static final String DESLIGADO = "DESLIGADO";
@@ -20,7 +24,7 @@ public class CarroServiceTeste {
 
         //Então, deve mudar para estado ligado
         System.out.println("Carro ".concat(carroService.estadoAtual(carro).toLowerCase()));
-        Assert.assertTrue(LIGADO.equalsIgnoreCase(carroService.estadoAtual(carro)));
+        Assertions.assertTrue(LIGADO.equalsIgnoreCase(carroService.estadoAtual(carro)));
     }
 
     @Test
@@ -36,7 +40,7 @@ public class CarroServiceTeste {
         carroService.desligar(carro);
 
         //Então deverá mudar para estado desligado
-        Assert.assertEquals(carroService.estadoAtual(carro), DESLIGADO);
+        Assertions.assertEquals(carroService.estadoAtual(carro), DESLIGADO);
     }
 
     @Test
@@ -52,7 +56,7 @@ public class CarroServiceTeste {
         carroService.acelerar(carro, 10*2);
 
         //Então sua velocidade deve ser 20
-        Assert.assertEquals(20, carro.getVelocidadeAtual());
+        Assertions.assertEquals(20, carro.getVelocidadeAtual());
     }
 
     @Test
@@ -68,7 +72,7 @@ public class CarroServiceTeste {
         carroService.acelerar(carro, 100);
         carroService.acelerar(carro, 100);
 
-        Assert.assertEquals(carro.getVelocidadeAtual(), carro.getVelocidadeMaxima());
+        Assertions.assertEquals(carro.getVelocidadeAtual(), carro.getVelocidadeMaxima());
     }
 
     @Test
@@ -82,6 +86,11 @@ public class CarroServiceTeste {
         carroService.frear(carro, 10*11);
 
         //Então a velocidade deve ser zero e o carro deve estar parado
-        Assert.assertFalse(carro.getVelocidadeAtual() < 0);
+        Assertions.assertFalse(carro.getVelocidadeAtual() < 0);
+    }
+
+    @AfterEach
+    public void convertionToJunitSuccess() {
+        System.out.println("Conversão para JUNIT5 realizado com sucesso");
     }
 }
