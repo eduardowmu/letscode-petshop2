@@ -1,15 +1,14 @@
 package service;
 
 import model.Conta;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ContaServiceTest {
     ContaService contaService;
     Conta conta01;
 
-    @Before
+    @BeforeAll
     public void setup() {
         contaService = new ContaService();
 
@@ -25,13 +24,13 @@ public class ContaServiceTest {
     @Test
     public void deveCriarConta() {
         //Então
-        Assert.assertTrue(conta01 != null);
+        Assertions.assertTrue(conta01 != null);
     }
 
     @Test
     public void deveAbrirContaComSaldoZero() {
         //Então
-        Assert.assertFalse(conta01.getSaldo() > 0);
+        Assertions.assertFalse(conta01.getSaldo() > 0);
     }
 
     @Test
@@ -44,7 +43,7 @@ public class ContaServiceTest {
         this.contaService.depositar(conta01, valorDepositar);
 
         //Então
-        Assert.assertEquals(conta01.getSaldo(), valorDisponivel + valorDepositar, 0);
+        Assertions.assertEquals(conta01.getSaldo(), valorDisponivel + valorDepositar, 0);
     }
 
     @Test
@@ -63,7 +62,7 @@ public class ContaServiceTest {
         }
 
         //Então
-        Assert.assertEquals("Saldo insuficiente", 50., conta01.getSaldo(), 0);
+        Assertions.assertEquals( 50., conta01.getSaldo(), "Saldo insuficiente");
     }
 
     @Test
@@ -81,7 +80,7 @@ public class ContaServiceTest {
         this.contaService.transferir(conta01, conta02, 80.);
 
         //Então
-        Assert.assertNotEquals(0, conta02.getSaldo());
+        Assertions.assertNotEquals(0, conta02.getSaldo());
     }
 
     @Test
@@ -95,7 +94,7 @@ public class ContaServiceTest {
         Conta conta02 = this.contaService.criarConta(agencia2, numero2, nome2);
 
         //Então
-        Assert.assertEquals(conta01, conta02);
+        Assertions.assertEquals(conta01, conta02);
     }
     @Test
     public void contasCopiadasDevemSerIguais() {
@@ -108,7 +107,7 @@ public class ContaServiceTest {
         Conta conta02 = this.contaService.criarConta(agencia2, numero2, nome2);
         Conta conta03 = conta02;
         //Então
-        Assert.assertSame(conta02, conta03);
+        Assertions.assertSame(conta02, conta03);
     }
     @Test
     public void contasDiferentesDevemSerDiferentes() {
@@ -121,6 +120,11 @@ public class ContaServiceTest {
         Conta conta02 = this.contaService.criarConta(agencia2, numero2, nome2);
         Conta conta03 = this.contaService.criarConta(agencia2, numero2, nome2);
         //Então
-        Assert.assertNotSame(conta02, conta03);
+        Assertions.assertNotSame(conta02, conta03);
+    }
+
+    @AfterAll
+    public void successJunit5() {
+        System.out.println("Conversão para JUNIT5 realizado com sucesso");
     }
 }
