@@ -1,0 +1,5 @@
+service\impl\VelocidadeServiceImpl.class
+model\Esteira.class
+service\EsteiraService.class
+service\VelocidadeService.class
+service\impl\EsteiraServiceImpl.class
