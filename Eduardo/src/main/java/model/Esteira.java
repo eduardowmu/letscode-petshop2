@@ -1,9 +1,8 @@
 package model;
 
 public class Esteira {
-    private static final Integer velocidadeMaxima = 15;
+
     private Integer velocidadeAtual;
-    private static final Integer elevacaoMaxima = 12;
     private Integer minutoProgramado;
     private Integer segundoAtual;
     private Integer inclinacao;
@@ -18,20 +17,12 @@ public class Esteira {
         this.velocidadeAtual = 0;
     }
 
-    public Integer getVelocidadeMaxima() {
-        return velocidadeMaxima;
-    }
-
     public Integer getVelocidadeAtual() {
         return velocidadeAtual;
     }
 
     public void setVelocidadeAtual(Integer velocidadeAtual) {
         this.velocidadeAtual = velocidadeAtual;
-    }
-
-    public Integer getElevacaoMaxima() {
-        return elevacaoMaxima;
     }
 
     public Integer getMinutoProgramado() {
