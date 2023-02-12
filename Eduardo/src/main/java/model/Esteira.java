@@ -3,15 +3,18 @@ package model;
 public class Esteira {
 
     private Integer velocidadeAtual;
+
+    private final Integer velocidadeMaxima = 15;
+    private final Integer velocidadeMinima = 0;
     private Integer minutoProgramado;
     private Integer segundoAtual;
     private Integer inclinacao;
+    private final Integer inclinacaoMaxima = 12;
+    private final Integer inclinacaoMinima = 0;
     private Boolean ligado;
-    private Boolean movimento;
 
     public Esteira() {
         this.ligado = false;
-        this.movimento = false;
         this.inclinacao = 0;
         this.segundoAtual = 0;
         this.velocidadeAtual = 0;
@@ -57,11 +60,19 @@ public class Esteira {
         this.ligado = ligado;
     }
 
-    public Boolean getMovimento() {
-        return movimento;
+    public Integer getVelocidadeMaxima() {
+        return velocidadeMaxima;
     }
 
-    public void setMovimento(Boolean movimento) {
-        this.movimento = movimento;
+    public Integer getVelocidadeMinima() {
+        return velocidadeMinima;
+    }
+
+    public Integer getInclinacaoMaxima() {
+        return inclinacaoMaxima;
+    }
+
+    public Integer getInclinacaoMinima() {
+        return inclinacaoMinima;
     }
 }

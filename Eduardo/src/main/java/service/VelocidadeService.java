@@ -1,5 +1,6 @@
 package service;
 
+import controller.ControladorEsteira;
 import model.Esteira;
 
 public interface VelocidadeService {

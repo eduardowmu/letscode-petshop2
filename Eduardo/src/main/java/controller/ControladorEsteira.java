@@ -1,24 +1,29 @@
 package controller;
 
+import model.Esteira;
+
 public class ControladorEsteira {
-    private static final Integer velocidadeMaxima = 15;
-    private static final Integer velocidadeMinima = 0;
-    private static final Integer elevacaoMaxima = 12;
-    private static final Integer elevacaoMinima = 0;
-
-    public Integer getVelocidadeMaxima() {
-        return this.getVelocidadeMaxima();
+    public void contarTempo(Esteira esteira) {
+        Thread t = new Thread();
+        for(int i = 0; i < esteira.getMinutoProgramado(); i++) {
+            if(esteira.getVelocidadeAtual() > 0 && esteira.getLigado()) {
+                this.contarTempo(i, t);
+            } else {
+                esteira.setVelocidadeAtual(0);
+                break;
+            }
+        }
     }
 
-    public static Integer getVelocidadeMinima() {
-        return velocidadeMinima;
-    }
-
-    public static Integer getElevacaoMaxima() {
-        return elevacaoMaxima;
-    }
-
-    public static Integer getElevacaoMinima() {
-        return elevacaoMinima;
+    private void contarTempo(int i, Thread t) {
+        try {
+            if(i > 0) {
+                t = new Thread();
+                t.wait(1000);
+                System.out.println(i);
+            }
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
