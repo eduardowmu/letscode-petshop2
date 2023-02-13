@@ -5,11 +5,13 @@ import model.Esteira;;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import service.CaminharInclinadoServiceTest;
-
+@ExtendWith(MockitoExtension.class)
 public class CaminharInclinadoServiceTestImpl implements CaminharInclinadoServiceTest {
     @Mock
     private ControladorEsteira controladorEsteira;
@@ -21,8 +23,8 @@ public class CaminharInclinadoServiceTestImpl implements CaminharInclinadoServic
 
     @BeforeEach
     public void start() {
+        MockitoAnnotations.openMocks(this);
         this.esteira = new Esteira();
-        MockitoAnnotations.initMocks(this);
     }
 
     @Test
