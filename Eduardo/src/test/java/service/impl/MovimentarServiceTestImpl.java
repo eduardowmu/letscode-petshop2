@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import service.EsteiraService;
 import service.MovimentarServiceTest;
-import service.VelocidadeService;
 
 public class MovimentarServiceTestImpl implements MovimentarServiceTest {
     @Mock

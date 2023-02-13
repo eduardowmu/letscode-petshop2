@@ -23,16 +23,16 @@ public class EsteiraServiceImpl implements EsteiraService {
     }
 
     @Override
-    public void inclinar(Esteira esteira, Integer inclinacaoMais) {
+    public void inclinar(Esteira esteira) {
         if(esteira.getLigado() && esteira.getInclinacao() < esteira.getInclinacaoMaxima()) {
-            esteira.setInclinacao(esteira.getInclinacao() + inclinacaoMais);
+            esteira.setInclinacao(esteira.getInclinacao() + 1);
         }
     }
 
     @Override
-    public void declinar(Esteira esteira, Integer inclinacaoMenos) {
-        if(esteira.getLigado() && esteira.getInclinacao() >= esteira.getInclinacaoMinima()) {
-            esteira.setInclinacao(esteira.getInclinacao() - inclinacaoMenos);
+    public void declinar(Esteira esteira) {
+        if(esteira.getLigado() && esteira.getInclinacao() > esteira.getInclinacaoMinima()) {
+            esteira.setInclinacao(esteira.getInclinacao() - 1);
         }
     }
 

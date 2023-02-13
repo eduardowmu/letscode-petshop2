@@ -3,7 +3,10 @@ package service;
 import model.Esteira;
 
 public interface CaminharInclinadoServiceTest {
-    void deveAumentarInclinacao(Esteira esteira);
+    void deveAumentarInclinacao();
 
-    void deveReduzirInclinacao(Esteira esteira);
+    void deveReduzirInclinacao();
+    void naoDeveInclinarMaisQueMaximo();
+
+    void naoDeveInclinarMenosQueMinimo();
 }
