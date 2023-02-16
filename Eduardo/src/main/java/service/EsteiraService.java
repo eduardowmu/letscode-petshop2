@@ -6,6 +6,7 @@ import model.Esteira;
 public interface EsteiraService {
     void programarTempo(Esteira esteira, Integer minuto);
     void aumentarSegundo(Esteira esteira, ControladorEsteira controladorEsteira);
+    void zerarTempo(Esteira esteira);
     void inclinar(Esteira esteira);
     void declinar(Esteira esteira);
     void desligar(Esteira esteira);

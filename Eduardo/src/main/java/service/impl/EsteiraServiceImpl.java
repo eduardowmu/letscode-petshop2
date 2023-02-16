@@ -10,7 +10,7 @@ public class EsteiraServiceImpl implements EsteiraService {
     @Override
     public void programarTempo(Esteira esteira, Integer minuto) {
         if(esteira.getLigado()) {
-            esteira.setMinutoProgramado(minuto*60);
+            esteira.setMinutoProgramado(minuto);
         }
     }
 
@@ -18,7 +18,17 @@ public class EsteiraServiceImpl implements EsteiraService {
     public void aumentarSegundo(Esteira esteira, ControladorEsteira controladorEsteira) {
         if(esteira.getLigado() && esteira.getVelocidadeAtual() > 0) {
             controladorEsteira.contarTempo(esteira);
+            this.zerarTempo(esteira);
             System.out.println("Treino finalizado");
+        }
+    }
+
+    @Override
+    public void zerarTempo(Esteira esteira) {
+        if(esteira.getLigado()) {
+            esteira.setMinutoProgramado(0);
+            esteira.setMinutoAtual(0);
+            esteira.setSegundoAtual(0);
         }
     }
 

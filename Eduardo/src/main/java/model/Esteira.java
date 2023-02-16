@@ -7,6 +7,8 @@ public class Esteira {
     private final Integer velocidadeMaxima = 15;
     private final Integer velocidadeMinima = 0;
     private Integer minutoProgramado;
+    private Integer minutoAtual;
+
     private Integer segundoAtual;
     private Integer inclinacao;
     private final Integer inclinacaoMaxima = 12;
@@ -34,6 +36,14 @@ public class Esteira {
 
     public void setMinutoProgramado(Integer minutoProgramado) {
         this.minutoProgramado = minutoProgramado;
+    }
+
+    public Integer getMinutoAtual() {
+        return minutoAtual;
+    }
+
+    public void setMinutoAtual(Integer minutoAtual) {
+        this.minutoAtual = minutoAtual;
     }
 
     public Integer getSegundoAtual() {
