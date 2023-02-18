@@ -6,16 +6,18 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.CaminharInclinadoServiceTest;
+
+import static org.junit.Assert.assertThrows;
+
 @ExtendWith(MockitoExtension.class)
 public class CaminharInclinadoServiceTestImpl implements CaminharInclinadoServiceTest {
     @Mock
     private ControladorEsteira controladorEsteira;
 
+    @Spy
     @InjectMocks
     private EsteiraServiceImpl esteiraService;
 
@@ -29,21 +31,29 @@ public class CaminharInclinadoServiceTestImpl implements CaminharInclinadoServic
 
     @Test
     @Override
+    public void naoDeveInclinarDesligado() {
+        Throwable throwable = assertThrows(Exception.class,
+                () -> esteiraService.inclinar(esteira)
+        );
+    }
+
+    @Test
+    @Override
     public void deveAumentarInclinacao() {
-        System.out.println("Dado que uma esteira está ligada");
+        //Dado que uma esteira está ligada
         this.esteiraService.ligar(esteira);
 
-        System.out.println("Quando aumentarmos a inclinação em 1x");
+        //Quando aumentarmos a inclinação em 1x
         this.esteiraService.inclinar(esteira);
 
-        System.out.println("Então a inclinação atual deve ser igual a 1");
+        //Então a inclinação atual deve ser igual a 1
         Assertions.assertTrue(esteira.getInclinacao() == 1);
     }
 
     @Test
     @Override
     public void deveReduzirInclinacao() {
-        System.out.println("Dado que uma esteira está ligada e inclinada 1x");
+        //Dado que uma esteira está ligada e inclinada 1x
         this.esteiraService.ligar(esteira);
         this.esteiraService.inclinar(esteira);
 
@@ -57,30 +67,30 @@ public class CaminharInclinadoServiceTestImpl implements CaminharInclinadoServic
     @Test
     @Override
     public void naoDeveInclinarMaisQueMaximo() {
-        System.out.println("Dado que uma esteira está ligada e com inclinação máxima");
+        //Dado que uma esteira está ligada e com inclinação máxima
         this.esteiraService.ligar(esteira);
 
         for(int i = 0; i < esteira.getInclinacaoMaxima(); i++) {
             this.esteiraService.inclinar(esteira);
         }
 
-        System.out.println("Quando aumentarmos a inclinação 1x");
+        //Quando aumentarmos a inclinação 1x
         this.esteiraService.inclinar(esteira);
 
-        System.out.println("Então a inclinação atual não deve ultrapassar o máximo");
+        //Então a inclinação atual não deve ultrapassar o máximo
         Assertions.assertFalse(esteira.getInclinacao() > esteira.getInclinacaoMaxima());
     }
 
     @Test
     @Override
     public void naoDeveInclinarMenosQueMinimo() {
-        System.out.println("Dado que uma esteira está ligada e com inclinação mínima");
+        //Dado que uma esteira está ligada e com inclinação mínima
         this.esteiraService.ligar(esteira);
 
-        System.out.println("Quando reduzirmos a inclinação 1x");
+        //Quando reduzirmos a inclinação 1x
         this.esteiraService.declinar(esteira);
 
-        System.out.println("Então a inclinação atual não deve ser menor que zero");
+        //Então a inclinação atual não deve ser menor que zero
         Assertions.assertNotEquals(-1, esteira.getInclinacao(),
                 "Inclinação inválida");
     }

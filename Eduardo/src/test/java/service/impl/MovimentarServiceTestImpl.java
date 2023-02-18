@@ -10,6 +10,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import service.MovimentarServiceTest;
 
+import static org.junit.Assert.assertThrows;
+
 public class MovimentarServiceTestImpl implements MovimentarServiceTest {
     @Mock
     private ControladorEsteira controladorEsteira;
@@ -30,8 +32,16 @@ public class MovimentarServiceTestImpl implements MovimentarServiceTest {
 
     @Test
     @Override
+    public void naoDeveTerVelocidadeDesligado() {
+        Throwable throwable = assertThrows(Exception.class,
+                () -> velocidadeService.aumentarVelocidade(esteira)
+        );
+    }
+
+    @Test
+    @Override
     public void deveAumentarVelocidade() {
-        System.out.println("Dado que uma esteira está ligada e parada");
+        //Dado que uma esteira está ligada e parada
         this.esteiraService.ligar(esteira);
 
         System.out.println("Quando aumentarmos a velocidade em 10 unidades");
@@ -46,7 +56,7 @@ public class MovimentarServiceTestImpl implements MovimentarServiceTest {
     @Test
     @Override
     public void deveReduzirVelocidade() {
-        System.out.println("Dado que uma esteira está ligada e com velocidade inicial 10");
+        //Dado que uma esteira está ligada e com velocidade inicial 10
         this.esteiraService.ligar(esteira);
 
         for(int i = 0; i < 10; i++) {
@@ -65,30 +75,30 @@ public class MovimentarServiceTestImpl implements MovimentarServiceTest {
     @Test
     @Override
     public void naoDeveAumentarAlemDaVelocidadeMaxima() {
-        System.out.println("Dado que uma esteira está ligada e com velocidade máxima");
+        //Dado que uma esteira está ligada e com velocidade máxima
         this.esteiraService.ligar(esteira);
 
         for(int i = 0; i < 15; i++) {
             this.velocidadeService.aumentarVelocidade(esteira);
         }
 
-        System.out.println("Quando aumentarmos a velocidade");
+        //Quando aumentarmos a velocidade
         this.velocidadeService.aumentarVelocidade(esteira);
 
-        System.out.println("Então a velocidade deverá permanecer na máxima");
+        //Então a velocidade deverá permanecer na máxima
         Assertions.assertFalse(esteira.getVelocidadeAtual() > esteira.getVelocidadeMaxima());
     }
 
     @Test
     @Override
     public void naoDeveReduzirAbaixoDaVelocidadeMinima() {
-        System.out.println("Dado que uma esteira está ligada e parada");
+        //Dado que uma esteira está ligada e parada
         this.esteiraService.ligar(esteira);
 
-        System.out.println("Quando reduzirmos a velocidade");
+        //Quando reduzirmos a velocidade
         this.velocidadeService.reduzirVelocidade(esteira);
 
-        System.out.println("Então a velocidade deverá permanecer zerada");
+        //Então a velocidade deverá permanecer zerada
         Assertions.assertNotEquals(-1, esteira.getVelocidadeAtual(),
                 "Velocidade não existe");
     }
