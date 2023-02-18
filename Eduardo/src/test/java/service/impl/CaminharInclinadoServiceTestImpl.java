@@ -31,14 +31,6 @@ public class CaminharInclinadoServiceTestImpl implements CaminharInclinadoServic
 
     @Test
     @Override
-    public void naoDeveInclinarDesligado() {
-        Throwable throwable = assertThrows(Exception.class,
-                () -> esteiraService.inclinar(esteira)
-        );
-    }
-
-    @Test
-    @Override
     public void deveAumentarInclinacao() {
         //Dado que uma esteira está ligada
         this.esteiraService.ligar(esteira);

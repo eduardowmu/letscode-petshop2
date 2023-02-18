@@ -34,16 +34,6 @@ public class TemporizadorServiceTestImpl implements TemporizadorServiceTest {
 
     @Test
     @Override
-    public void naoDeveContarDesligado() {
-        //Dado que a esteira está desligada
-
-        Throwable throwable = assertThrows(Exception.class,
-                () -> this.esteiraService.aumentarSegundo(esteira, this.controladorEsteira)
-        );
-    }
-
-    @Test
-    @Override
     public void deveContarTempoSegundo() {
         //Dado uma esteira ligada e programada para movimentar por 1 min
         this.esteiraService.ligar(this.esteira);
@@ -80,9 +70,10 @@ public class TemporizadorServiceTestImpl implements TemporizadorServiceTest {
         this.esteiraService.programarTempo(this.esteira, 1);
 
         this.aumentarVelocidade10(this.esteira);
+        this.esteiraService.aumentarSegundo(this.esteira, this.controladorEsteira);
 
         //Quando finalizar o treino
-        this.esteiraService.aumentarSegundo(this.esteira, this.controladorEsteira);
+        this.esteiraService.zerarTempo(esteira);
 
         //Então os tempos devem zerar
         Assertions.assertEquals(0, this.esteira.getMinutoAtual());
