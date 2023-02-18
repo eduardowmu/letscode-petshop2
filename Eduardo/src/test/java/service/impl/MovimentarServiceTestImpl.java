@@ -14,6 +14,9 @@ import static org.junit.Assert.assertThrows;
 
 public class MovimentarServiceTestImpl implements MovimentarServiceTest {
     @Mock
+    private Esteira esteira;
+
+    @Mock
     private ControladorEsteira controladorEsteira;
 
     @InjectMocks
@@ -21,8 +24,6 @@ public class MovimentarServiceTestImpl implements MovimentarServiceTest {
 
     @InjectMocks
     private EsteiraServiceImpl esteiraService;
-
-    private Esteira esteira;
 
     @BeforeEach
     public void start() {

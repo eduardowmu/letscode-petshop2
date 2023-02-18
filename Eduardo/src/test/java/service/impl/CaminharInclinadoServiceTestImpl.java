@@ -1,27 +1,29 @@
 package service.impl;
 
 import controller.ControladorEsteira;
-import model.Esteira;;
+import model.Esteira;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
+
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.CaminharInclinadoServiceTest;
 
-import static org.junit.Assert.assertThrows;
-
 @ExtendWith(MockitoExtension.class)
 public class CaminharInclinadoServiceTestImpl implements CaminharInclinadoServiceTest {
+    @Mock
+    private Esteira esteira;
+
     @Mock
     private ControladorEsteira controladorEsteira;
 
     @Spy
     @InjectMocks
     private EsteiraServiceImpl esteiraService;
-
-    private Esteira esteira;
 
     @BeforeEach
     public void start() {

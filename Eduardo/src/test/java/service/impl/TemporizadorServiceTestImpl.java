@@ -13,6 +13,8 @@ import service.TemporizadorServiceTest;
 import static org.junit.Assert.assertThrows;
 
 public class TemporizadorServiceTestImpl implements TemporizadorServiceTest {
+    @Mock
+    private Esteira esteira;
 
     @Mock
     private ControladorEsteira controladorEsteira;
@@ -22,8 +24,6 @@ public class TemporizadorServiceTestImpl implements TemporizadorServiceTest {
 
     @InjectMocks
     private VelocidadeServiceImpl velocidadeService;
-
-    private Esteira esteira;
 
     @BeforeEach
     public void start() {
@@ -38,6 +38,7 @@ public class TemporizadorServiceTestImpl implements TemporizadorServiceTest {
         //Dado uma esteira ligada e programada para movimentar por 1 min
         this.esteiraService.ligar(this.esteira);
         this.esteiraService.programarTempo(this.esteira, 1);
+
 
         //Quando estiver em movimento com velocidade 10
         this.aumentarVelocidade10(this.esteira);
