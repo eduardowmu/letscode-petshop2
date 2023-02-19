@@ -27,8 +27,8 @@ public class MovimentarServiceTestImpl implements MovimentarServiceTest {
 
     @BeforeEach
     public void start() {
-        this.esteira = new Esteira();
         MockitoAnnotations.initMocks(this);
+        this.esteira = new Esteira();
     }
 
     @Test
@@ -43,7 +43,7 @@ public class MovimentarServiceTestImpl implements MovimentarServiceTest {
     @Override
     public void deveAumentarVelocidade() {
         //Dado que uma esteira está ligada e parada
-        this.esteiraService.ligar(esteira);
+        this.esteiraService.ligar(this.esteira);
 
         System.out.println("Quando aumentarmos a velocidade em 10 unidades");
         for(int i = 0; i < 10; i++) {
