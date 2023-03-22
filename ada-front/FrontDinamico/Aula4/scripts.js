@@ -19,3 +19,10 @@ function deletarTarefa(id) {
     const tarefa = document.getElementById(id)
     tarefa.remove()
 }
+
+function excluirTarefas() {
+    const lista = tarefas.length
+    for(let i = 0; i < lista; i++) {
+        deletarTarefa(i+1)
+    }
+}
