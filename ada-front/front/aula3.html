@@ -1,0 +1,106 @@
+<html>
+<!--
+Arquivo com as tags 
+# Tags semanticas html 5 
+- header: Usado para indicar cabecalho/topo 
+- main: Usado para indicar conteudo principal da pagina
+- footer: Usado para indicar rodape/baixo da pagina
+- section: Fazer divisoes dentro da main 
+- article: Conteudo independente da main ou pagina, geralmente como um post de um blog
+- aside: Usado para indicar que se trata de um conteudo lateral  
+- nav: Usado para representar navegacao com links (menu) 
+- figure: conteudo como imagem ou video
+-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <style>
+            ul li {
+                display: inline-block;
+                margin-right: 5px;
+            }
+
+            a {
+                color: white;
+            }
+
+            .header, .footer {
+                background-color: blue;
+                color: white;
+                height: 10vh;
+                display: flex;
+                align-items: center;
+            }
+            .center {
+                justify-content: center;
+            }
+            .main {
+                height: 80vh;
+            }
+            .post-theme {
+                font-size: 16px;
+                margin: 0;
+                padding: 0;
+            }
+            .posts div {
+                margin-top: 10px;
+                margin-bottom: 10px
+            }
+            .post-title {
+                font-size: 14px;
+                font-weight: normal;
+                margin: 0;
+                padding: 0;
+                margin-bottom: 5px
+            }
+            .post-description {
+                font-size: 12px;
+                font-weight: 400;
+                color: #464343;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Posts</a></li>
+                    <li><a href="#">Ajuda</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="main">
+            Bem vindo ao Blog do fulano
+            <aside class="posts">
+                <section>
+                    <h3 class="post-theme">Posts sobre frontend</h3>
+                    <article>
+                        <h3 class="post-title">Vuejs</h3>
+                        <h3 class="post-description">O Vuejs é um framework muito legal</h3>
+                    </article>
+                    <article>
+                        <h3 class="post-title">React</h3>
+                        <h3 class="post-description"> O React é um framework muito legal</h3>
+                    </article>
+                </section>
+                <section>
+                    <h3 class="post-theme">Posts sobre backend</h3>
+                    <article>
+                        <h3 class="post-title">Springboot</h3>
+                        <h3 class="post-description">O Springboot é um framework backend muito legal e bla bla bla bla</h3>
+                    </article>
+                    <article>
+                        <h3 class="post-title">Express</h3>
+                        <h3 class="post-description"> O Express é um framework backend muito legal e bla bla bla bla bla</h3>
+                    </article>
+                </section>
+            </aside>
+        </div>
+        <div class="footer center">
+            AQUI TEM O CONTEUDO DO FOOTER
+        </div>
+    </body>
+</html>

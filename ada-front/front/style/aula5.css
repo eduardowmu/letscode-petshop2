@@ -1,0 +1,125 @@
+header {
+    width: 100%;
+    height: 100px;
+    background-color: blue;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body {
+    background-color: #cdcdcd;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    height: 300px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+}
+
+
+img.img-main {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+}
+
+img.img-aside {
+    width: 90%;
+    height: 100%;
+    padding: 30px;
+}
+
+img.img-post {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+}
+
+.principal-post-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.secondary-post-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+aside {
+    height: 300px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+}
+
+main {
+    margin-top: 110px;
+}
+
+footer {
+    width: 100%;
+    height: 300px;
+    background-color: black;
+}
+
+/* For Mobile View */
+@media screen and (max-width: 767px) {
+    .secondary-post-container, .principal-post-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* For Tablet View */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .secondary-post-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/*
+CSS ATUALIZADO
+header {
+    width: 100%;
+    height: 100px;
+    background-color: blue;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body {
+    background-color: #cdcdcd;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    height: 300px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+aside {
+    height: 300px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+main {
+    margin-top: 110px;
+}
+
+footer {
+    width: 100%;
+    height: 300px;
+    background-color: black;
+}
+*/

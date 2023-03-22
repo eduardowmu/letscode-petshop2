@@ -1,0 +1,93 @@
+td.formulario {padding:5px 5px 0.5px 5px;}
+/*
+td.tabela {padding:15px 50px 15px 50px;}
+*/
+.barra-direita {float:right;}
+
+.barra-direita:hover
+{	background:black;
+	font-weight:900;
+}
+
+.barra 
+{	display:inline;
+	color:#000;
+	float:left;
+}
+
+nav.navbar-transparente
+{	padding: 15px 0px;
+	/*transpar�ncia no fundo, o ultimo
+	numero � a opacidade*/
+	background: rgba(0, 0, 0, 0.9);
+	border: none;
+}
+
+button.acao {backgound:none;}
+button.btn-primary, .btn-success {width: 300px;}
+
+#lixo {padding-top:10px;}
+
+body {background-color: #F4F4FA;}
+
+#form {padding-top:120px;}
+
+b{color:#000000;}
+
+b#titulo {color:#FFFFFF;}
+
+.color {color:blue;}
+
+#background {padding-top: 90px;}
+
+.empresas {padding-top: 15px;}
+
+#formspree {padding-top: 40px;}
+
+/*rodap�*/
+
+#rodape {background: rgba(0, 0, 0, 0.9);}
+
+#rodape h4 {color:white;}
+
+div#rodape2 
+{	padding-top: 50px;
+    width:100%
+}
+
+div#imagem1	{float: left;}
+
+/*flutua��o de componentes a direita da p�gina*/
+.item-rede-social {float: right;}
+
+.item:hover 
+{	background:white;
+	font-weight:900;
+}
+
+#copy 
+{	color:#ffffff;
+	font-weight: 900;
+	align:center;
+}
+
+/*---MEDIA QUERIES---*/
+/*media com o tipo de dispositivo que queremos, para qualquer
+dispositivo que tenha no m�ximo 767px, podemos definir algumas
+formata��es*/
+@media screen and (max-width: 767px)
+{	h1 {font-size: 50px;}
+	.btn-custom {margin: 10px 15px;}
+}
+
+/*para dipositivos com resolu��o maior*/
+@media screen and (min-width: 768px)
+{h1 {font-size: 70px;}}
+
+/*para dispositivos com resolu��o maior ainda*/
+@media screen and (min-width: 992px)
+{h1 {font-size: 80px;}}
+
+/*configura��o para a m�xima resolu��o*/
+@media screen and (min-width: 1200px)
+{h1 {font-size: 100px;}}

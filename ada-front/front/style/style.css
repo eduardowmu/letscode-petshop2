@@ -1,0 +1,13 @@
+th, td {
+    border: solid;
+    width: fit-content;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+div {
+    padding: 2;
+}
