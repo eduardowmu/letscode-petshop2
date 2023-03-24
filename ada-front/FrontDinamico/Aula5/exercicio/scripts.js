@@ -16,20 +16,26 @@ botao.addEventListener(`click`, async () => {
     h1.innerText = ''
     ehNumeroPrimo(Math.floor(Math.random() * 10))
      .then((respostaEsperada) => {
+        setTexto(respostaEsperada, 'green')
+        /*
         const fonte = document.createElement("font")
         fonte.setAttribute('color', 'green')
         h1.insertAdjacentElement('afterbegin', fonte)
         fonte.innerText = respostaEsperada
+        */
      })
      .catch((respostaFrustrante) => {
+        setTexto(respostaFrustrante, 'red')
+        /*
         const fonte = document.createElement("font")
         fonte.setAttribute('color', 'red')
         h1.insertAdjacentElement('afterbegin', fonte)
         fonte.innerText = respostaFrustrante
+        */
      })
 })
 
-function ehPrimo(numero) {
+function ehPrimo(numero, color) {
     if(numero == 0) {
         return false
     }
@@ -39,4 +45,11 @@ function ehPrimo(numero) {
         } 
     }
     return true
+}
+
+function setTexto(texto, color) {
+    const fonte = document.createElement("font")
+    fonte.setAttribute('color', color)
+    h1.insertAdjacentElement('afterbegin', fonte)
+    fonte.innerText = texto
 }
