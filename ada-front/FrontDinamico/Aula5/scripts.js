@@ -6,8 +6,7 @@ const tarefas = document.getElementsByClassName('tarefa')
 
 function inserirTarefa() {
     const entrada = input.value
-    const qtd = tarefas.length
-    
+    let qtd = tarefas.length
     tabela.insertAdjacentHTML('afterbegin', '<tbody id="' + (qtd + 1) + 
                                 '" class="tarefa"><tr><td>' + entrada + 
                                 '</td><td><button onclick="deletarTarefa('+ 
@@ -18,19 +17,12 @@ function inserirTarefa() {
 
 function deletarTarefa(id) {
     const tarefa = document.getElementById(id)
-    if(tarefa != undefined || tarefa != null) {
-        tarefa.remove()
-    }
+    tarefa.remove()
 }
 
 function excluirTarefas() {
-    let lista = document.getElementsByClassName('tarefa')
-    let elementos = []
-    const tamanho = lista.length
-    for(let i = 0; i < tamanho; i++) {
-        elementos.push(lista[i])
-        console.log(elementos[i])
+    const lista = tarefas.length
+    for(let i = 0; i < lista; i++) {
+        deletarTarefa(i+1)
     }
-
-    elementos.forEach(e => e.remove())
 }
