@@ -7,52 +7,48 @@
         <script src="./scripts.js"></script>
     </head>
     <body>
-        <form name="meu_form">
+        <form>
             <h1>Cadastre-se</h1>
 
             <label for="nome">Nome</label><br/>
-            <input type="text" id="nome" class="texto" placeholder="Ex: Fulano Ciclano" required="required" name="nome" />
+            <input type="text" id="nome" class="texto" required="required" name="nome" />
             
             <br/><br/>
             <label for="email">Email</label>
-            <input type="email" id="email" class="texto" placeholder="fulano@mail.com" name="email" />
+            <input type="email" id="email" class="texto" name="email" required="required"/>
             
             <br/><br/>
             <label for="fone">Fone</label>
-            <input type="radio" id="casa" name="casa" value="casa" checked/>
-            <label for="casa">Casa</label>
-            <input type="radio" id="celular" name="celular" value="celular"/>
+            <input type="radio" id="celular" class="texto" name="celular" value="celular" checked/>
             <label for="celular">Celular</label>
+            <input type="radio" id="casa" class="texto" name="casa" value="casa"/>
+            <label for="casa">Casa</label>
             <br/>
-            <input type="tel" id="fone" class="texto" placeholder="(xx)xxxxx-xxxx" name="fone"/>
+            <input type="tel" id="telefone" class="texto" name="telefone" required="required"/>
             
             <br/><br/>
             <label for="logradouro">Logradouro</label>
-            <input type="text" id="logradouro" class="texto" placeholder="Ex: Rua dos DEVs" 
-                name="logradouro"/>
+            <input type="text" id="logradouro" class="texto" name="logradouro" required="required"/>
 
             <br/><br/>
             <label for="cidade">Cidade</label>
-            <input type="text" id="cidade" class="texto" placeholder="Ex: Cidade dos DEVs" 
-                name="cidade"/>
+            <input type="text" id="cidade" class="texto" name="cidade" required="required"/>
             
             <br/><br/>
             <label for="estado">Estado</label>
-            <input type="text" id="estado" class="texto" placeholder="Ex: Estado dos DEVs" 
-                name="estado"/>
+            <input type="text" id="estado" class="texto" name="estado" required="required"/>
             
             <br/><br/>
             <label for="cep">CEP</label>
             <br/>
-            <input type="text" id="cep" class="texto" placeholder="xxxxx-xxx" name="cep"/>
+            <input type="text" id="cep" class="texto" name="cep" required="required"/>
 
             <br/><br/>
             <label for="pais">Pais</label>
-            <input type="text" id="pais" class="texto" placeholder="Ex: DEVs" 
-                name="pais"/>
+            <input type="text" id="pais" class="texto" name="pais" required="required"/>
             
-
-            <input type="submit" class="texto enviar" onclick="Enviar();" value="Enviar" />
+            <button type="submit" id="enviar" name="enviar" class="enviar">Enviar</button>
+            <!-- input class="texto enviar" value="Enviar"/ -->
         </form>
     </body>
 </html>
