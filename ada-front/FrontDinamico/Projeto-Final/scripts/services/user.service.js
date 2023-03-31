@@ -1,11 +1,19 @@
 const urlBase = "http://localhost:5000/v1/"
 
+
 const headers = new Headers()
 headers.append('content-type', 'application/json')
 
-
-export const loginService = async (dados) => {
-    const url = urlBase + 'auth'
+/*
+    dados = {
+        nome: string,
+        email: string,
+        senha: string,
+        foto: string,
+    }
+*/
+export const signupService = async (dados) => {
+    const url = urlBase + 'user'
 
     const resposta = await fetch(url, {
         headers,
